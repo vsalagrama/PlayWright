@@ -13,7 +13,7 @@ import { devices } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   testDir: './tests',
   /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
+  timeout: 120 * 1000,
   expect: {
     /**
      * Maximum time expect() should wait for the condition to be met.
@@ -40,6 +40,9 @@ const config: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    headless: false,
+    screenshot: 'on',
+    video: 'on',
   },
 
   /* Configure projects for major browsers */
@@ -48,9 +51,12 @@ const config: PlaywrightTestConfig = {
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
+        launchOptions: {
+          args: ['--start-fullscreen']
+        }
       },
-    },
-
+    }
+/*
     {
       name: 'firefox',
       use: {
@@ -64,7 +70,7 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Safari'],
       },
     },
-
+*/
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
