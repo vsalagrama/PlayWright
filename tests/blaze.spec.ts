@@ -44,4 +44,6 @@ test('test', async ({ page }) => {
   // Click pre
   await page.locator('pre').click();
 
+  // npx playwright codegen vantislifeinsurancestgnew.sureify.com/?vdtca
+  // npx playwright test tests/blaze.spec.ts --headed --project=chromium
 });
