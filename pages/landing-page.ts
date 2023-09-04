@@ -4,17 +4,17 @@ import { globalConfig, TextBox } from '../tests/testdata'
 export class LandingPage {
     async checkReadOnly() {
         const status = await this.page.locator('//*[@id="dontwrite"]').isEditable()
-        if(status === true){
+        if (status === true) {
             console.log('Editable field')
-        }else{
+        } else {
             console.log('Not Editable field')
         }
     }
     async checkDisabled() {
-       const status = await this.page.locator('//*[@id="noEdit"]').isDisabled();
-        if(status === true){
+        const status = await this.page.locator('//*[@id="noEdit"]').isDisabled();
+        if (status === true) {
             console.log('Disabled field')
-        }else{
+        } else {
             console.log('Not Disabled field')
         }
     }
@@ -57,7 +57,6 @@ export class LandingPage {
         await this.page.getByRole('heading', { name: 'Elements' }).click();
     }
 
-
     readonly page: Page
     constructor(page: Page) {
         this.page = page
@@ -66,7 +65,5 @@ export class LandingPage {
         await this.page.goto(globalConfig.url);
         //await expect(this.page).toHaveTitle('DEMOQA', { timeout: 100000 })
     }
-
-
 
 }
