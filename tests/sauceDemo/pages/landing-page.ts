@@ -2,6 +2,26 @@ import { expect, type Page } from "@playwright/test";
 import { globalConfig, TextBox } from '../tests/testdata'
 
 export class LandingPage {
+    async loginWithPerformanceGlitchUser() {
+        await this.enterUserName(globalConfig.performance_glitch_user.username);
+        await this.enterPassword(globalConfig.performance_glitch_user.password);
+        await this.clickLogin();
+    }
+    async loginWithProblemUser() {
+        await this.enterUserName(globalConfig.problem_user.username);
+        await this.enterPassword(globalConfig.problem_user.password);
+        await this.clickLogin();
+    }
+    async loginWithLockedOutUser() {
+        await this.enterUserName(globalConfig.lockedout_user.username);
+        await this.enterPassword(globalConfig.lockedout_user.password);
+        await this.clickLogin();
+        await this.checkLockedOutUserErrorMessage();
+    }
+    async checkLockedOutUserErrorMessage() {
+        await expect(this.page.locator('[data-test="error"]')).toBeVisible();
+        console.log('Error message appeared for invalid user ')
+    }
     async loginWithStandardUser() {
         await this.enterUserName(globalConfig.standard_user.username);
         await this.enterPassword(globalConfig.standard_user.password);
