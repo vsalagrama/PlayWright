@@ -6,12 +6,11 @@ import { ProductPage } from '../pages/products-page';
 import { TextBox } from './testdata'
 
 
-test('Case 1: Login with Valid Credentials (Standard User): @regression @smoke', async ({ page, isMobile, browser }) => {
+test('Case 2: Login with Invalid Credentials (Locked Out User): @regression @smoke', async ({ page, isMobile, browser }) => {
     const landingpage = new LandingPage(page);
     const productsPage = new ProductPage(page);
     await landingpage.launchURL();
-    await landingpage.loginWithStandardUser();
-    await productsPage.logout();
+    await landingpage.loginWithLockedOutUser();
 
     console.log(TextBox.successMessage)
     console.log('browser version ' ,browser.version());
