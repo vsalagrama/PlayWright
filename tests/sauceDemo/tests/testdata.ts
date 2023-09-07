@@ -17,6 +17,9 @@ export const globalConfig = {
         username: 'performance_glitch_user',
         password: 'secret_sauce'
     },
+    firstname: "Venkatesh",
+    lastname: "salagrama",
+    zip : "12345"
 }
 export const TextBox = {
     successMessage: 'A success Message',
