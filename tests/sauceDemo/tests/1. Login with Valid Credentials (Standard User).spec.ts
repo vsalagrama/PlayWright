@@ -14,7 +14,7 @@ test('Case 1: Login with Valid Credentials (Standard User): @regression @smoke',
     await productsPage.logout();
 
     console.log(TextBox.successMessage)
-    console.log('browser version ' ,browser.version());
+    console.log('browser version ' ,browser.version()); // to print browser version
 })
 
 test.afterEach(async ({ page }, testInfo) => {
