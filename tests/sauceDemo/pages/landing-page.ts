@@ -30,17 +30,17 @@ export class LandingPage {
     }
     async checkReadOnly() {
         const status = await this.page.locator('//*[@id="dontwrite"]').isEditable()
-        if(status === true){
+        if (status === true) {
             console.log('Editable field')
-        }else{
+        } else {
             console.log('Not Editable field')
         }
     }
     async checkDisabled() {
-       const status = await this.page.locator('//*[@id="noEdit"]').isDisabled();
-        if(status === true){
+        const status = await this.page.locator('//*[@id="noEdit"]').isDisabled();
+        if (status === true) {
             console.log('Disabled field')
-        }else{
+        } else {
             console.log('Not Disabled field')
         }
     }
@@ -89,29 +89,38 @@ export class LandingPage {
         this.page = page
     }
     async launchURL() {
-        await this.page.goto(globalConfig.url);
-        await expect(this.page).toHaveTitle('Swag Labs', { timeout: 100000 })
-        console.log('url successfully launched ',this.page.url());
+        await this.navigateToURL(globalConfig.url);
+        await this.waitForPageTitle('Swag Labs', { timeout: 100000 });
+        this.logSuccessfulLaunch();
     }
-    async  enterUserName(username: string) {
+    private async navigateToURL(url: string): Promise<void> {
+        await this.page.goto(globalConfig.url);
+    }
+    private async waitForPageTitle(title: string, options: { timeout: number }): Promise<void> {
+        await expect(this.page).toHaveTitle(title, options);
+    }
+    private logSuccessfulLaunch(): void {
+        console.log('URL successfully launched:', this.page.url());
+    }
+    async enterUserName(username: string) {
         await this.page.locator('[data-test="username"]').fill(username);
         console.log('user name entered :', username);
     }
-    async  enterPassword(password: string) {
+    async enterPassword(password: string) {
         await this.page.locator('[data-test="password"]').fill(password);
         console.log('password entered ', password);
     }
-    
-    async  clickLogin() {
+
+    async clickLogin() {
         await this.page.locator('[data-test="login-button"]').click();
         console.log('click button clicked');
     }
-    
-    async  checkProductsPageStatus() {
+
+    async checkProductsPageStatus() {
         await this.page.locator('//*[@id="header_container"]/div[2]/span').isVisible();
         console.log('Products page opened');
     }
-    
+
 
 
 }

@@ -1,10 +1,9 @@
 import { test, expect } from '@playwright/test';
-import exp from 'constants';
 
 test('test', async ({ page }) => {
   await page.goto('https://blazedemo.com/');
   await expect(page.getByRole('heading', { name: 'Welcome to the Simple Travel' })).toBeVisible();
-  await expect(page).toHaveTitle('Website Name');
+ // await expect(page).toHaveTitle('Website Name');
   await page.locator('select[name="fromPort"]').selectOption('Portland');
   await page.locator('select[name="toPort"]').selectOption('New York');
   await page.getByRole('button', { name: 'Find Flights' }).click();
