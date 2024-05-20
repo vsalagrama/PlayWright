@@ -12,7 +12,7 @@ test('Case 1: Login with Valid Credentials (Standard User): @regression @smoke',
     await landingpage.launchURL();
     await landingpage.loginWithStandardUser();
     await productsPage.logout();
-
+    
     console.log(TextBox.successMessage)
     console.log('browser version ' ,browser.version()); // to print browser version
 })
