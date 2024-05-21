@@ -4,6 +4,8 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  branches-ignore:
+    -mine
 jobs:
   test:
     timeout-minutes: 60
